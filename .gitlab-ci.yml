@@ -22,6 +22,8 @@ test_project:
   variables:
     GIT_DEPTH: "50"
   script:
+    - echo ${CI_JOB_TOKEN}
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - swift package reset
     - swift test
   tags:
