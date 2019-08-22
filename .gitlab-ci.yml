@@ -1,7 +1,7 @@
 image: swift:5.0
 
 before_script:
-  - echo "using CI Token ${CI_JOB_TOKEN} to login."
+  # use the Gitlab CI Job token to login for all git clones on the machine.
   - echo -e "machine gitlab.com\nlogin gitlab-ci-token\npassword ${CI_JOB_TOKEN}" > ~/.netrc
 
 stages: 
