@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FirebladeUUID",
+        "repositoryURL": "https://gitlab.com/fireblade/uuid.git",
+        "state": {
+          "branch": null,
+          "revision": "4e69b7d3c5685f7f61c238d5566386474843f698",
+          "version": "0.2.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
