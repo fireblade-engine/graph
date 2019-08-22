@@ -1,7 +1,8 @@
 image: swift:5.0
 
-#before_script:
-  #- eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+before_script:
+  - echo "using CI Token ${CI_JOB_TOKEN} to login."
+  - echo -e "machine gitlab.com\nlogin gitlab-ci-token\npassword ${CI_JOB_TOKEN}" > ~/.netrc
 
 stages: 
   - test
@@ -22,8 +23,6 @@ test_project:
   variables:
     GIT_DEPTH: "50"
   script:
-    - echo ${CI_JOB_TOKEN}
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - swift package reset
     - swift test
   tags:
