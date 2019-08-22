@@ -6,8 +6,8 @@
         "repositoryURL": "https://gitlab.com/fireblade/uuid.git",
         "state": {
           "branch": null,
-          "revision": "4e69b7d3c5685f7f61c238d5566386474843f698",
-          "version": "0.2.0"
+          "revision": "02bf1fc278f1db3e6e32b4637f0aa7cb5ae13998",
+          "version": "0.3.0"
         }
       }
     ]

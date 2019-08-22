@@ -10,7 +10,7 @@ let package = Package(
             targets: ["FirebladeGraph"]),
     ],
     dependencies: [
-        .package(url: "https://gitlab.com/fireblade/uuid.git", from: "0.2.0"),
+        .package(url: "https://gitlab.com/fireblade/uuid.git", from: "0.3.0"),
     ],
     targets: [
         .target(
