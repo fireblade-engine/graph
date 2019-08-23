@@ -24,11 +24,13 @@ final class NodeTests: XCTestCase {
         rootNode.addChild(c01)
         
         XCTAssertTrue(c01.parent === rootNode)
+        XCTAssertEqual(c01.parent, rootNode)
         XCTAssertEqual(c01.children.count, 0)
         XCTAssertEqual(rootNode.children.count, 1)
         
         rootNode.addChild(c02)
         XCTAssertTrue(c02.parent === rootNode)
+        XCTAssertEqual(c02.parent, rootNode)
         XCTAssertEqual(c02.children.count, 0)
         XCTAssertEqual(rootNode.children.count, 2)
         
@@ -114,4 +116,20 @@ final class NodeTests: XCTestCase {
         XCTAssertEqual(b.children.count, 0)
     }
     
+    func testDescriptionDescending() {
+        let rootNode = Node()
+        
+        let c1 = Node()
+        c1.addChild(Node())
+        rootNode.addChild(Node())
+        rootNode.addChild(c1)
+        rootNode.addChild(Node())
+        
+        XCTAssertFalse(rootNode.description.isEmpty)
+        XCTAssertFalse(rootNode.debugDescription.isEmpty)
+        XCTAssertNotEqual(rootNode.description, rootNode.debugDescription)
+        XCTAssertFalse(rootNode.debugDescriptionDescending.isEmpty)
+        XCTAssertFalse(rootNode.descriptionDescending.isEmpty)
+        XCTAssertNotEqual(rootNode.debugDescriptionDescending, rootNode.descriptionDescending)
+    }
 }

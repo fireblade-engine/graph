@@ -32,7 +32,7 @@ import PackageDescription
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-    .package(url: "https://gitlab.com/fireblade/graph.git", from: "1.0.0")
+    .package(url: "https://gitlab.com/fireblade/graph.git", from: "1.0.2")
     ],
     targets: [
         .target(

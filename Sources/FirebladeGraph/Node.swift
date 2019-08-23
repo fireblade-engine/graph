@@ -188,7 +188,7 @@ extension Node: CustomStringConvertible {
 // MARK: CustomDebugStringConvertible
 extension Node: CustomDebugStringConvertible {
     open var debugDescription: String {
-        return "<\(type(of: self))>"
+        return "<\(type(of: self))[\(uuid)]>"
     }
 }
 
