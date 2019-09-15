@@ -1,6 +1,5 @@
 included:
   - Sources
-excluded:
   - Tests
 identifier_name:
   excluded:
