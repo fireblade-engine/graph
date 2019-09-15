@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "FirebladeUUID",
-        "repositoryURL": "https://gitlab.com/fireblade/uuid.git",
+        "repositoryURL": "https://github.com/fireblade-engine/uuid.git",
         "state": {
           "branch": null,
-          "revision": "02bf1fc278f1db3e6e32b4637f0aa7cb5ae13998",
-          "version": "0.3.0"
+          "revision": "d1e47c9e0ad62e4d1d10f97938641348d70c1e2e",
+          "version": "1.0.0"
         }
       }
     ]
