@@ -5,7 +5,7 @@
 [![swift version](https://img.shields.io/badge/swift-5.0-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
-This is a **lightweight**, **fast** and **easy to use** directed acyclic graph [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
+This is a **lightweight**, **fast** and **easy to use** [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
 It is developed and maintained as part of the [Fireblade Game Engine](https://github.com/fireblade-engine) project.
 
 ## 🚀 Getting Started
