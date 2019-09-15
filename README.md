@@ -1,11 +1,11 @@
 # Fireblade Graph
 
-<!--[![Build Status](<#TODO#>)](<#TODO#>)-->
+[![Build Status](https://travis-ci.com/fireblade-engine/graph.svg?branch=master)](https://travis-ci.com/fireblade-engine/graph)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![swift version](https://img.shields.io/badge/swift-5.0-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
-This is a **lightweight**, **fast** and **easy to use** directed acyclic node graph implementation in Swift.    
+This is a **lightweight**, **fast** and **easy to use** directed acyclic graph [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
 It is developed and maintained as part of the [Fireblade Game Engine](https://github.com/fireblade-engine) project.
 
 ## 🚀 Getting Started
@@ -32,7 +32,7 @@ import PackageDescription
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-    .package(url: "https://gitlab.com/fireblade/graph.git", from: "1.0.2")
+    .package(url: "https://github.com/fireblade-engine/graph.git", from: "1.1.0")
     ],
     targets: [
         .target(
@@ -61,7 +61,7 @@ rootNode.addChild(child2)
 
 ```
 
-A DAG implementation starts to shine when you can add functionality or behavior to it's nodes.
+A DAG implementation starts to shine when you can add functionality or behavior to it's nodes.   
 This is acchieved by subclassing `Node` and implementing the desired behavior in it's `.updateFromParent()` method.
 
 ```swift

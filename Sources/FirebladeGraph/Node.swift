@@ -162,7 +162,7 @@ open class Node {
     /// Check node for equality.
     ///
     /// Override in subclass to add comparisons.
-    /// 
+    ///
     /// - Parameter other: other node.
     open func isEqual<T>(to other: T) -> Bool where T: Node {
         return uuid == other.uuid &&

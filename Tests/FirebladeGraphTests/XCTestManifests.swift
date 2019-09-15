@@ -11,7 +11,7 @@ extension NodeTests {
         ("testEquality", testEquality),
         ("testRemoveAllChildren", testRemoveAllChildren),
         ("testRemoveChildAtIndex", testRemoveChildAtIndex),
-        ("testRemoveMissingChild", testRemoveMissingChild),
+        ("testRemoveMissingChild", testRemoveMissingChild)
     ]
 }
 
@@ -24,7 +24,7 @@ extension TraversalTests {
         ("testAscendReduceLinearGraph", testAscendReduceLinearGraph),
         ("testDescendLinearGraph", testDescendLinearGraph),
         ("testDescendReduceLinearGraph", testDescendReduceLinearGraph),
-        ("testDescendSpreadingGraph", testDescendSpreadingGraph),
+        ("testDescendSpreadingGraph", testDescendSpreadingGraph)
     ]
 }
 
@@ -34,7 +34,7 @@ extension UpdateTests {
     // to regenerate.
     static let __allTests__UpdateTests = [
         ("testUpdateChildren", testUpdateChildren),
-        ("testUpdateSelf", testUpdateSelf),
+        ("testUpdateSelf", testUpdateSelf)
     ]
 }
 
@@ -42,7 +42,7 @@ public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(NodeTests.__allTests__NodeTests),
         testCase(TraversalTests.__allTests__TraversalTests),
-        testCase(UpdateTests.__allTests__UpdateTests),
+        testCase(UpdateTests.__allTests__UpdateTests)
     ]
 }
 #endif
