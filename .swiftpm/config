@@ -1,0 +1,9 @@
+{
+  "object": [
+    {
+      "mirror": "https://gitlab.com/fireblade/uuid.git",
+      "original": "https://github.com/fireblade-engine/uuid.git"
+    }
+  ],
+  "version": 1
+}
