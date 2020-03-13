@@ -8,12 +8,14 @@
 import FirebladeGraph
 import XCTest
 
+// swiftlint:disable identifier_name
+
 final class NodeTests: XCTestCase {
     func testBasics() {
-        let rootNode = Node()
+        let rootNode = Node<String>("root")
 
-        let c01 = Node()
-        let c02 = Node()
+        let c01 = Node<String>("child01")
+        let c02 = Node<String>("child02")
 
         XCTAssertTrue(rootNode.children.isEmpty)
         XCTAssertNil(rootNode.parent)
@@ -46,15 +48,15 @@ final class NodeTests: XCTestCase {
     }
 
     func testEquality() {
-        let n1 = Node()
-        let n2 = Node()
+        let n1 = Node<Int>(1)
+        let n2 = Node<Int>(2)
 
         XCTAssertEqual(n1, n1)
         XCTAssertEqual(n2, n2)
         XCTAssertNotEqual(n1, n2)
 
-        let sn1 = Node()
-        let sn2 = Node()
+        let sn1 = Node<Int>(3)
+        let sn2 = Node<Int>(4)
 
         XCTAssertEqual(sn1, sn1)
         XCTAssertEqual(sn2, sn2)
@@ -62,10 +64,10 @@ final class NodeTests: XCTestCase {
     }
 
     func testRemoveChildAtIndex() {
-        let node = Node()
+        let node = Node<String>("root")
 
-        let c01 = Node()
-        let c02 = Node()
+        let c01 = Node<String>("c01")
+        let c02 = Node<String>("c02")
 
         node.addChild(c01)
         node.addChild(c02)
@@ -77,6 +79,8 @@ final class NodeTests: XCTestCase {
 
         XCTAssertEqual(node.children.count, 1)
         XCTAssertEqual(node.children.first, c01)
+
+        XCTAssertNil(node.removeChild(at: 20))
     }
 
     func testRemoveAllChildren() {
