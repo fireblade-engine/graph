@@ -39,7 +39,7 @@ extension UpdateTests {
 }
 
 public func __allTests() -> [XCTestCaseEntry] {
-    return [
+    [
         testCase(NodeTests.__allTests__NodeTests),
         testCase(TraversalTests.__allTests__TraversalTests),
         testCase(UpdateTests.__allTests__UpdateTests)

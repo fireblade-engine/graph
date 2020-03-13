@@ -8,6 +8,8 @@
 import FirebladeGraph
 import XCTest
 
+// swiftlint:disable identifier_name
+
 final class NodeTests: XCTestCase {
     func testBasics() {
         let rootNode = Node()

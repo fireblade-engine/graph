@@ -10,6 +10,8 @@ import func XCTest.XCTAssertEqual
 import FirebladeGraph
 import FirebladeUUID
 
+// swiftlint:disable identifier_name
+
 final class TraversalTests: XCTestCase {
     func testDescendLinearGraph() {
         let a = Node()

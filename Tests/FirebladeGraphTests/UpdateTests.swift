@@ -8,6 +8,8 @@
 import FirebladeGraph
 import XCTest
 
+// swiftlint:disable identifier_name
+
 final class UpdateTests: XCTestCase {
     func testUpdateSelf() {
         let exp = expectation(description: "\(#function)")

@@ -51,7 +51,7 @@ open class Node {
     ///
     /// - Parameter childIndex: The child index. Must exist.
     public final subscript(_ childAtIndex: Int) -> Node {
-        return children[childAtIndex]
+        children[childAtIndex]
     }
 
     /// Remove this node (self) as child from it's parent (self.parent).
@@ -63,7 +63,7 @@ open class Node {
     /// - Parameter index: Index of child node. Must exist.
     @discardableResult
     public final func removeChild(at index: Int) -> Node {
-        return children.remove(at: index)
+        children.remove(at: index)
     }
 
     /// Remove a given child node from this node.
@@ -165,7 +165,7 @@ open class Node {
     ///
     /// - Parameter other: other node.
     open func isEqual<T>(to other: T) -> Bool where T: Node {
-        return uuid == other.uuid &&
+        uuid == other.uuid &&
             parent == other.parent &&
             children == other.children
     }
@@ -174,21 +174,21 @@ open class Node {
 // MARK: Equatable
 extension Node: Equatable {
     public static func == (lhs: Node, rhs: Node) -> Bool {
-        return lhs.isEqual(to: rhs)
+        lhs.isEqual(to: rhs)
     }
 }
 
 // MARK: CustomStringConvertible
 extension Node: CustomStringConvertible {
     open var description: String {
-        return "<\(type(of: self))>"
+        "<\(type(of: self))>"
     }
 }
 
 // MARK: CustomDebugStringConvertible
 extension Node: CustomDebugStringConvertible {
     open var debugDescription: String {
-        return "<\(type(of: self))[\(uuid)]>"
+        "<\(type(of: self))[\(uuid)]>"
     }
 }
 
@@ -196,12 +196,12 @@ extension Node: CustomDebugStringConvertible {
 extension Node {
     /// Recursively descripes this node and all it's children.
     public var descriptionDescending: String {
-        return describeDescending(self) { $0.description }
+        describeDescending(self) { $0.description }
     }
 
     /// Recursively debug descripes this node and all it's children.
     public var debugDescriptionDescending: String {
-        return describeDescending(self) { $0.debugDescription }
+        describeDescending(self) { $0.debugDescription }
     }
 
     /// Recursively describe given node and all it's children using a given closure.
