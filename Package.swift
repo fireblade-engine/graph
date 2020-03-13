@@ -9,13 +9,10 @@ let package = Package(
             name: "FirebladeGraph",
             targets: ["FirebladeGraph"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/fireblade-engine/uuid.git", from: "1.0.0"),
-    ],
     targets: [
         .target(
             name: "FirebladeGraph",
-            dependencies: ["FirebladeUUID"]),
+            dependencies: []),
         .testTarget(
             name: "FirebladeGraphTests",
             dependencies: ["FirebladeGraph"]),
