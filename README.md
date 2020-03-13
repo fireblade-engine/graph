@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/fireblade-engine/graph.svg?branch=master)](https://travis-ci.com/fireblade-engine/graph)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![swift version](https://img.shields.io/badge/swift-5.0-brightgreen.svg)](#)
+[![swift version](https://img.shields.io/badge/swift-5.1-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
 This is a **lightweight**, **fast** and **easy to use** [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
@@ -20,12 +20,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### 💻 Installing
 
-Fireblade Graph is available for all platforms that support [Swift 5.0](https://swift.org/) and higher and the [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager).
+Fireblade Graph is available for all platforms that support [Swift 5](https://swift.org/) and higher and the [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager).
 
 Extend the following lines in your `Package.swift` file or use it to create a new project.
 
 ```swift
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
@@ -51,10 +51,10 @@ It is representing a node in a [directed acyclic graph (DAG)](https://en.wikiped
 To create a graph create a node and add children.
 
 ```swift
-let rootNode = Node()
+let rootNode = Node<Void>()
 
-let child1 = Node()
-let child2 = Node()
+let child1 = Node<Void>()
+let child2 = Node<Void>()
 
 rootNode.addChild(child1)
 rootNode.addChild(child2)
@@ -62,12 +62,12 @@ rootNode.addChild(child2)
 ```
 
 A DAG implementation starts to shine when you can add functionality or behavior to it's nodes.   
-This is acchieved by subclassing `Node` and implementing the desired behavior in it's `.updateFromParent()` method.
+This is acchieved by subclassing `Node` and implementing the desired behavior in it's `.updateFromParent()` method as well as setting the node's generic `Content` constraint.
 
 ```swift
-class MyNode: Node {
+class StringNode: Node<String> {
 
-	let name: String // you may add properties
+	let content: String
 	
 	func myFunc() { ... } // or functions
 
@@ -78,12 +78,14 @@ class MyNode: Node {
     }
 }
 
+let node = StringNode("Hello World!")
+
 ```
 
 To traverse through the graph from root to leave nodes call `.update()` on the root node of the graph.
 
 ```swift
-let rootNode = Node()
+let rootNode = Node<Void>()
 
 // ... build up your graph here ...
 
