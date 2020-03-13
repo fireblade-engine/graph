@@ -13,7 +13,7 @@ import XCTest
 final class UpdateTests: XCTestCase {
     func testUpdateSelf() {
         let exp = expectation(description: "\(#function)")
-        let node = TestNode()
+        let node = TestNode(0)
 
         node.didUpdate = {
             XCTAssertEqual($0, node)
@@ -30,10 +30,10 @@ final class UpdateTests: XCTestCase {
         let expC2 = expectation(description: "\(#function)-c2")
         let expC3 = expectation(description: "\(#function)-c3")
 
-        let root = TestNode()
-        let c1 = TestNode()
-        let c2 = TestNode()
-        let c3 = TestNode()
+        let root = TestNode(0)
+        let c1 = TestNode(1)
+        let c2 = TestNode(2)
+        let c3 = TestNode(3)
 
         root.addChild(c1)
         root.addChild(c2)
@@ -67,7 +67,7 @@ final class UpdateTests: XCTestCase {
 
 typealias UpdateCallback = (TestNode) -> Void
 
-class TestNode: Node {
+class TestNode: Node<UInt8> {
     var didUpdate: UpdateCallback?
 
     override func updateFromParent() {
