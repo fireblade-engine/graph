@@ -9,10 +9,13 @@ let package = Package(
             name: "FirebladeGraph",
             targets: ["FirebladeGraph"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/ctreffs/GraphViz.git", .branch("master"))
+    ],
     targets: [
         .target(
             name: "FirebladeGraph",
-            dependencies: []),
+            dependencies: ["GraphViz"]),
         .testTarget(
             name: "FirebladeGraphTests",
             dependencies: ["FirebladeGraph"]),

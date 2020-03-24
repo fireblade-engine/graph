@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GraphViz",
+        "repositoryURL": "https://github.com/ctreffs/GraphViz.git",
+        "state": {
+          "branch": "master",
+          "revision": "2cb7f47d26d9a3ba825d8519ccb66293df6118e6",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
