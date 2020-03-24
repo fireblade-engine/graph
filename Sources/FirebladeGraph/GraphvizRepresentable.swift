@@ -16,7 +16,7 @@ public protocol GraphVizNodeRepresentable {
 
 extension GraphVizNodeRepresentable {
     internal func graphVizNode() -> GraphViz.Node {
-        return .init(graphVizNodeDescription())
+        .init(graphVizNodeDescription())
     }
 }
 
@@ -24,7 +24,7 @@ extension String: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { self }
 }
 extension Int: GraphVizNodeRepresentable {
-    public func graphVizNodeDescription() ->String { "\(self)" }
+    public func graphVizNodeDescription() -> String { "\(self)" }
 }
 extension UInt: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { "\(self)" }
@@ -36,7 +36,6 @@ extension UInt8: GraphVizNodeRepresentable {
 extension UUID: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { uuidString }
 }
-
 
 public protocol GraphVizRenderable {
     func renderGraph(as format: Format) -> Data?

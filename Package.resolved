@@ -3,20 +3,29 @@
     "pins": [
       {
         "package": "GraphViz",
-        "repositoryURL": "https://github.com/ctreffs/GraphViz.git",
+        "repositoryURL": "https://github.com/SwiftDocOrg/GraphViz.git",
         "state": {
           "branch": "master",
-          "revision": "2cb7f47d26d9a3ba825d8519ccb66293df6118e6",
+          "revision": "ce0327a62c4b5a5ddd4741406ea54f164f228a54",
           "version": null
+        }
+      },
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
+        "state": {
+          "branch": null,
+          "revision": "114882386a815f4a2e6d8f2f7ee4857acd372438",
+          "version": "1.7.2"
         }
       },
       {
         "package": "SwiftGraph",
         "repositoryURL": "https://github.com/davecom/SwiftGraph.git",
         "state": {
-          "branch": "master",
-          "revision": "399c17c78c3c2d010e0573bda4834af8c8957b76",
-          "version": null
+          "branch": null,
+          "revision": "3e9ed26e380b40fcadf80ef5d588829ced251673",
+          "version": "3.0.0"
         }
       }
     ]

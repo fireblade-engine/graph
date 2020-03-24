@@ -28,7 +28,6 @@ extension WeightedGraph: GraphVizRenderable where V: GraphVizNodeRepresentable, 
     }
 }
 
-
 private func drawGraphUnweigted<G>(_ graph: G, as format: Format) -> Data? where G: SwiftGraph.Graph, G.V: GraphVizNodeRepresentable {
     let directed = graph.isDAG
     var graphvizGraph = Graph(directed: directed, strict: true)
@@ -41,7 +40,7 @@ private func drawGraphUnweigted<G>(_ graph: G, as format: Format) -> Data? where
         let direction: GraphViz.Edge.Direction = edge.directed ? .forward : .none
         let from = graph.vertexAtIndex(edge.u)
         let to = graph.vertexAtIndex(edge.v)
-        
+
         let gEdge = GraphViz.Edge(from: from.graphVizNode(), to: to.graphVizNode(), direction: direction)
         graphvizGraph.append(gEdge)
     }
@@ -55,7 +54,6 @@ private func drawGraphUnweigted<G>(_ graph: G, as format: Format) -> Data? where
     }
 }
 
-
 private func drawGraphWeigted<G, W>(_ graph: G, as format: Format) -> Data? where G: SwiftGraph.Graph, G.V: GraphVizNodeRepresentable, G.E == WeightedEdge<W>, W: Numeric {
     let directed = graph.isDAG
     var graphvizGraph = Graph(directed: directed, strict: true)
@@ -68,7 +66,7 @@ private func drawGraphWeigted<G, W>(_ graph: G, as format: Format) -> Data? wher
         let direction: GraphViz.Edge.Direction = edge.directed ? .forward : .none
         let from = graph.vertexAtIndex(edge.u)
         let to = graph.vertexAtIndex(edge.v)
-        
+
         var gEdge = GraphViz.Edge(from: from.graphVizNode(), to: to.graphVizNode(), direction: direction)
         let string = String(describing: edge.weight)
         gEdge.weight = Double(string)
