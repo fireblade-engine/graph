@@ -47,6 +47,10 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
+        #if os(Linux)
+        XCTSkip("not testable on linux yet")
+        #endif
+
         assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
     }
 
@@ -82,6 +86,10 @@ final class TraversalTests: XCTestCase {
         }
         let expected = [a, b, c, e, f, g, d, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
+
+        #if os(Linux)
+        XCTSkip("not testable on linux yet")
+        #endif
 
         assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
     }

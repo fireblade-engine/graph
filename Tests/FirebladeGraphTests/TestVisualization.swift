@@ -30,6 +30,10 @@ final class TestVisualization: XCTestCase {
         friends.addEdge(from: john, to: max)
         friends.addEdge(from: max, to: jane)
 
+        #if os(Linux)
+        XCTSkip("not testable on linux yet")
+        #endif
+
         guard let image = friends.renderGraphAsImage() else {
             XCTFail("No rendering done")
             return
@@ -46,6 +50,10 @@ final class TestVisualization: XCTestCase {
         friends.addEdge(from: john, to: jane, directed: true)
         friends.addEdge(from: john, to: max, directed: true)
         friends.addEdge(from: max, to: jane, directed: true)
+
+        #if os(Linux)
+        XCTSkip("not testable on linux yet")
+        #endif
 
         guard let image = friends.renderGraphAsImage() else {
             XCTFail("No rendering done")
@@ -81,6 +89,10 @@ final class TestVisualization: XCTestCase {
         cityGraph.addEdge(from: "Atlanta", to: "Miami", weight: 661)
         cityGraph.addEdge(from: "Houston", to: "Miami", weight: 1187)
         cityGraph.addEdge(from: "Houston", to: "Dallas", weight: 239)
+
+        #if os(Linux)
+        XCTSkip("not testable on linux yet")
+        #endif
 
         guard let image = cityGraph.renderGraphAsImage() else {
             XCTFail("No rendering done")
