@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "GraphViz",
-        "repositoryURL": "https://github.com/SwiftDocOrg/GraphViz.git",
+        "repositoryURL": "https://github.com/ctreffs/GraphViz.git",
         "state": {
           "branch": "master",
-          "revision": "ce0327a62c4b5a5ddd4741406ea54f164f228a54",
+          "revision": "61cfc2d5a100964cbd080bc901a578b820319edd",
           "version": null
         }
       },
