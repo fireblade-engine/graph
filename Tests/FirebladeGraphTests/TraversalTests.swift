@@ -9,6 +9,7 @@ import class XCTest.XCTestCase
 import func XCTest.XCTAssertEqual
 import FirebladeGraph
 import struct Foundation.UUID
+import SnapshotTesting
 
 // swiftlint:disable identifier_name
 
@@ -45,6 +46,8 @@ final class TraversalTests: XCTestCase {
 
         let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
+
+        assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
     }
 
     func testDescendSpreadingGraph() {
@@ -79,6 +82,8 @@ final class TraversalTests: XCTestCase {
         }
         let expected = [a, b, c, e, f, g, d, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
+
+        assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
     }
 
     func testDescendReduceLinearGraph() {

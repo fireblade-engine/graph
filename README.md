@@ -102,7 +102,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * [Christian Treffs](https://github.com/ctreffs)
 
-See also the list of [contributors](<#TODO#>) who participated in this project.
+See also the list of [contributors](graphs/contributors) who participated in this project.
 
 ## 🔏 License
 
