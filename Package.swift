@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -9,12 +9,17 @@ let package = Package(
             name: "FirebladeGraph",
             targets: ["FirebladeGraph"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/SwiftDocOrg/GraphViz.git", .branch("master")),
+        .package(url: "https://github.com/davecom/SwiftGraph.git", from: "3.0.0"),
+        .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.2")
+    ],
     targets: [
         .target(
             name: "FirebladeGraph",
-            dependencies: []),
+            dependencies: ["GraphViz", "SwiftGraph"]),
         .testTarget(
             name: "FirebladeGraphTests",
-            dependencies: ["FirebladeGraph"]),
+            dependencies: ["FirebladeGraph", "SnapshotTesting"]),
     ]
 )
