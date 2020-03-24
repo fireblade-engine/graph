@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/fireblade-engine/graph.svg?branch=master)](https://travis-ci.com/fireblade-engine/graph)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![swift version](https://img.shields.io/badge/swift-5.1-brightgreen.svg)](#)
+[![swift version](https://img.shields.io/badge/swift-5.2-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
 This is a **lightweight**, **fast** and **easy to use** [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
@@ -25,14 +25,14 @@ Fireblade Graph is available for all platforms that support [Swift 5](https://sw
 Extend the following lines in your `Package.swift` file or use it to create a new project.
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 
 import PackageDescription
 
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-    .package(url: "https://github.com/fireblade-engine/graph.git", from: "1.2.0")
+    .package(url: "https://github.com/fireblade-engine/graph.git", from: "1.3.0")
     ],
     targets: [
         .target(
@@ -102,7 +102,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * [Christian Treffs](https://github.com/ctreffs)
 
-See also the list of [contributors](<#TODO#>) who participated in this project.
+See also the list of [contributors](graphs/contributors) who participated in this project.
 
 ## 🔏 License
 
