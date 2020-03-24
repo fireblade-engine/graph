@@ -1,4 +1,4 @@
-image: swift:5.2
+image: swiftlang/swift:nightly-5.2-bionic
 
 before_script:
   # use the Gitlab CI Job token to login for all git clones on the machine.
