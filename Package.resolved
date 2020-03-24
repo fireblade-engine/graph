@@ -9,6 +9,15 @@
           "revision": "2cb7f47d26d9a3ba825d8519ccb66293df6118e6",
           "version": null
         }
+      },
+      {
+        "package": "SwiftGraph",
+        "repositoryURL": "https://github.com/davecom/SwiftGraph.git",
+        "state": {
+          "branch": "master",
+          "revision": "399c17c78c3c2d010e0573bda4834af8c8957b76",
+          "version": null
+        }
       }
     ]
   },
