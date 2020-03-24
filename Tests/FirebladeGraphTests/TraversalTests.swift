@@ -47,7 +47,9 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
+        #if !os(Linux)
         assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
+        #endif
     }
 
     func testDescendSpreadingGraph() {
@@ -83,7 +85,9 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, e, f, g, d, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
+        #if !os(Linux)
         assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
+        #endif
     }
 
     func testDescendReduceLinearGraph() {

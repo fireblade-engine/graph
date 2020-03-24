@@ -10,7 +10,7 @@ let package = Package(
             targets: ["FirebladeGraph"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/SwiftDocOrg/GraphViz.git", .branch("master")),
+        .package(url: "https://github.com/ctreffs/GraphViz.git", .branch("master")),
         .package(url: "https://github.com/davecom/SwiftGraph.git", from: "3.0.0"),
         .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.2")
     ],

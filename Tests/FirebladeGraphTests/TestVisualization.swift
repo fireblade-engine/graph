@@ -30,11 +30,13 @@ final class TestVisualization: XCTestCase {
         friends.addEdge(from: john, to: max)
         friends.addEdge(from: max, to: jane)
 
+        #if !os(Linux)
         guard let image = friends.renderGraphAsImage() else {
             XCTFail("No rendering done")
             return
         }
         assertSnapshot(matching: image, as: .image)
+        #endif
     }
 
     func testCicularDirectedVisualization() {
@@ -47,11 +49,13 @@ final class TestVisualization: XCTestCase {
         friends.addEdge(from: john, to: max, directed: true)
         friends.addEdge(from: max, to: jane, directed: true)
 
+        #if !os(Linux)
         guard let image = friends.renderGraphAsImage() else {
             XCTFail("No rendering done")
             return
         }
         assertSnapshot(matching: image, as: .image)
+        #endif
     }
 
     func testCityGraphVisualization() {
@@ -82,10 +86,12 @@ final class TestVisualization: XCTestCase {
         cityGraph.addEdge(from: "Houston", to: "Miami", weight: 1187)
         cityGraph.addEdge(from: "Houston", to: "Dallas", weight: 239)
 
+        #if !os(Linux)
         guard let image = cityGraph.renderGraphAsImage() else {
             XCTFail("No rendering done")
             return
         }
         assertSnapshot(matching: image, as: .image)
+        #endif
     }
 }
