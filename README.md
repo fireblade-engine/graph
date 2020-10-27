@@ -46,7 +46,7 @@ let package = Package(
 ## 📝 Code Example
 
 The `Node` is the core element of the package.   
-It is representing a node in a [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph)  and holds a (weak) reference to it's parent node and references to it's child nodes.
+It is representing a node in a [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph)  and holds a (weak) reference to its parent node and references to its child nodes.
 
 To create a graph create a node and add children.
 
@@ -61,8 +61,8 @@ rootNode.addChild(child2)
 
 ```
 
-A DAG implementation starts to shine when you can add functionality or behavior to it's nodes.   
-This is acchieved by subclassing `Node` and implementing the desired behavior in it's `.updateFromParent()` method as well as setting the node's generic `Content` constraint.
+A DAG implementation starts to shine when you can add functionality or behavior to its nodes.   
+This is acchieved by subclassing `Node` and implementing the desired behavior in its `.updateFromParent()` method as well as setting the node's generic `Content` constraint.
 
 ```swift
 class StringNode: Node<String> {
