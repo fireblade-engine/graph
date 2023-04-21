@@ -1,9 +1,6 @@
 # Fireblade Graph
 
-[![Build Status](https://travis-ci.com/fireblade-engine/graph.svg?branch=master)](https://travis-ci.com/fireblade-engine/graph)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![swift version](https://img.shields.io/badge/swift-5.2-brightgreen.svg)](#)
-[![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
 This is a **lightweight**, **fast** and **easy to use** [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
 It is developed and maintained as part of the [Fireblade Game Engine](https://github.com/fireblade-engine) project.
@@ -96,13 +93,13 @@ rootNode.update()
 
 ## 🏷️ Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the tags on this repository. 
 
 ## ✍️ Authors
 
 * [Christian Treffs](https://github.com/ctreffs)
 
-See also the list of [contributors](graphs/contributors) who participated in this project.
+See also the list of contributors who participated in this project.
 
 ## 🔏 License
 
