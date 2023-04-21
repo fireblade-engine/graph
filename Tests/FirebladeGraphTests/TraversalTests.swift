@@ -46,11 +46,23 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
-        let image = try XCTUnwrap(a.renderGraphAsImage())
-
-        #if !os(Linux)
-        assertSnapshot(matching: image, as: .image)
-        #endif
+        let exp = expectation(description: "\(#function)")
+        a.renderGraphAsImage { result in
+            switch result {
+            case .success(let image):
+#if !os(Linux)
+                DispatchQueue.main.async {
+                    assertSnapshot(matching: image, as: .image)
+                    exp.fulfill()
+                }
+#else
+                exp.fulfill()
+#endif
+            case .failure(let failure):
+                XCTFail("\(failure)")
+            }
+        }
+        wait(for: [exp], timeout: 3.0)
     }
 
     func testDescendSpreadingGraph() throws {
@@ -86,10 +98,23 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, e, f, g, d, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
-        let image = try XCTUnwrap(a.renderGraphAsImage())
-        #if !os(Linux)
-        assertSnapshot(matching: image, as: .image)
-        #endif
+        let exp = expectation(description: "\(#function)")
+        a.renderGraphAsImage { result in
+            switch result {
+            case .success(let image):
+#if !os(Linux)
+                DispatchQueue.main.async {
+                    assertSnapshot(matching: image, as: .image)
+                    exp.fulfill()
+                }
+#else
+                exp.fulfill()
+#endif
+            case .failure(let failure):
+                XCTFail("\(failure)")
+            }
+        }
+        wait(for: [exp], timeout: 3.0)
     }
 
     func testDescendReduceLinearGraph() {

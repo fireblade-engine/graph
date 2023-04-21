@@ -7,7 +7,6 @@
 
 import struct Foundation.Data
 import struct Foundation.UUID
-import DOT
 import GraphViz
 
 public protocol GraphVizNodeRepresentable {
@@ -38,19 +37,32 @@ extension UUID: GraphVizNodeRepresentable {
 }
 
 public protocol GraphVizRenderable {
-    func renderGraph(as format: Format) -> Data?
+    func renderGraph(as format: Format, completion: (@escaping (Result<Data, Swift.Error>) -> Void))
+}
+
+extension Image {
+    public enum Error: Swift.Error {
+        case failedToCreateImage(_ from: Data)
+    }
 }
 
 #if canImport(AppKit)
 import class AppKit.NSImage
 public typealias Image = NSImage
 extension GraphVizRenderable {
-    public func renderGraphAsImage() -> Image? {
-        guard let data = renderGraph(as: .png) else {
-            return nil
+    public func renderGraphAsImage(completion: @escaping (Result<Image, Swift.Error>) -> Void) {
+        renderGraph(as: .png) { result in
+            switch result {
+            case .success(let data):
+                if let image = Image(data: data) {
+                    completion(.success(image))
+                } else {
+                    completion(.failure(Image.Error.failedToCreateImage(data)))
+                }
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
         }
-
-        return Image(data: data)
     }
 }
 
@@ -58,12 +70,19 @@ extension GraphVizRenderable {
 import class UIKit.UIImage
 public typealias Image = UIImage
 extension GraphVizRenderable {
-    public final func renderGraphAsImage() -> Image? {
-        guard let data = renderGraph(as: .png) else {
-            return nil
+    public func renderGraphAsImage(completion: @escaping (Result<Image, Swift.Error>) -> Void) {
+        renderGraph(as: .png) { result in
+            switch result {
+            case .success(let data):
+                if let image = Image(data: data) {
+                    completion(.success(image))
+                } else {
+                    completion(.failure(Image.Error.failedToCreateImage(data)))
+                }
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
         }
-
-        return Image(data: data)
     }
 }
 #endif

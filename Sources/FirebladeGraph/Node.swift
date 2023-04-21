@@ -188,14 +188,14 @@ extension Node: Comparable where Content: Comparable {
 
 // MARK: CustomStringConvertible
 extension Node: CustomStringConvertible {
-    open var description: String {
+    public var description: String {
         "<\(type(of: self))>"
     }
 }
 
 // MARK: CustomDebugStringConvertible
 extension Node: CustomDebugStringConvertible {
-    open var debugDescription: String {
+    public var debugDescription: String {
         "<\(type(of: self)) \(content)>"
     }
 }
