@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  macOS:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        xcode: ["14.2"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+        
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
+        
+      - name: Test
+        run: swift test -v --skip-update --parallel --enable-code-coverage
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+          
+      - name: Build Release
+        run: swift build -c release
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+
+  linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        swift: ["latest"]
+    container:
+      image: swift:${{ matrix.swift }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+        
+      - name: Restore APT cache
+        uses: actions/cache@v3
+        with:
+          path: /var/cache/apt
+          key: ${{ runner.os }}-apt
+        
+      - name: Install dependencies
+        run: |
+          apt update
+          apt install -y curl
+          
+      - name: Test
+        run: swift test -v --parallel --enable-code-coverage
+        
+      - name: Build Release
+        run: swift build -c release

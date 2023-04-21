@@ -1,45 +1,12 @@
-# Version 1.0.0
-UNAME_S := $(shell uname -s)
+SWIFT_PACKAGE_VERSION := $(shell swift package tools-version)
 
-# Lint
-lint:
-	swiftlint autocorrect --format
-	swiftlint lint --quiet
+lint-fix:
+	mint run swiftlint --fix --quiet
+	mint run swiftformat --quiet --swiftversion ${SWIFT_PACKAGE_VERSION} .
 
-lintErrorOnly:
-	@swiftlint autocorrect --format --quiet
-	@swiftlint lint --quiet | grep error
-
-# Git
-precommit: lint genLinuxTests
-
-submodule:
-	git submodule init
-	git submodule update --recursive
-
-# Tests
-genLinuxTests:
-	swift test --generate-linuxmain
-	swiftlint autocorrect --format --path Tests/
-
-test: genLinuxTests
+test:
 	swift test
 
-# Package
-latest:
-	swift package update
-
-resolve:
-	swift package resolve
-
-# Xcode
-genXcode:
-	swift package generate-xcodeproj --enable-code-coverage --skip-extra-files
-
-genXcodeOpen: genXcode
-	open *.xcodeproj
-
-# Clean
 clean:
 	swift package reset
 	rm -rdf .swiftpm/xcode
@@ -50,7 +17,9 @@ clean:
 cleanArtifacts:
 	swift package clean
 
-# Test links in README
-# requires <https://github.com/tcort/markdown-link-check>
-testReadme:
-	markdown-link-check -p -v ./README.md
+latest:
+	swift package update
+
+resolve:
+	swift package resolve
+
