@@ -5,22 +5,18 @@
 //  Created by Christian Treffs on 24.03.20.
 //
 
-import GraphViz
 import struct Foundation.Data
+import GraphViz
 
 extension Node: GraphVizRenderable where Content: GraphVizNodeRepresentable {
-    public final func renderGraph(as format: Format) -> Data? {
+    public final func renderGraph(as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) {
         var graph = Graph(directed: true, strict: true)
 
         descend { node in
             node.renderNode(in: &graph)
         }
 
-        do {
-            return try graph.render(using: .dot, to: format)
-        } catch {
-            return nil
-        }
+        graph.render(using: .dot, to: format, completion: completion)
     }
 
     final func renderNode(in graph: inout GraphViz.Graph) {

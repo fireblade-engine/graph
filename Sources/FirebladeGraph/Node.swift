@@ -25,7 +25,7 @@ open class Node<Content> {
 
     public init(_ content: Content) {
         self.content = content
-        self.children = []
+        children = []
     }
 
     deinit {
@@ -164,8 +164,7 @@ open class Node<Content> {
     /// Splitting the implementation of the update away from the update call
     /// itself allows the detail to be overridden without disrupting the
     /// general sequence of updateFromParent (e.g. raising events).
-    open func updateFromParent() {
-    }
+    open func updateFromParent() {}
 
     open func childrenNeedingUpdate() -> AnyIterator<ChildNode> {
         AnyIterator(children.makeIterator())
@@ -173,6 +172,7 @@ open class Node<Content> {
 }
 
 // MARK: Equatable
+
 extension Node: Equatable where Content: Equatable {
     public static func == (lhs: Node<Content>, rhs: Node<Content>) -> Bool {
         lhs.content == rhs.content
@@ -180,6 +180,7 @@ extension Node: Equatable where Content: Equatable {
 }
 
 // MARK: Comparable
+
 extension Node: Comparable where Content: Comparable {
     public static func < (lhs: Node<Content>, rhs: Node<Content>) -> Bool {
         lhs.content < rhs.content
@@ -187,28 +188,31 @@ extension Node: Comparable where Content: Comparable {
 }
 
 // MARK: CustomStringConvertible
+
 extension Node: CustomStringConvertible {
-    open var description: String {
+    public var description: String {
         "<\(type(of: self))>"
     }
 }
 
 // MARK: CustomDebugStringConvertible
+
 extension Node: CustomDebugStringConvertible {
-    open var debugDescription: String {
+    public var debugDescription: String {
         "<\(type(of: self)) \(content)>"
     }
 }
 
 // MARK: Recursive description
-extension Node {
+
+public extension Node {
     /// Recursively descripes this node and all it's children.
-    public var descriptionDescending: String {
+    var descriptionDescending: String {
         describeDescending(self) { $0.description }
     }
 
     /// Recursively debug descripes this node and all it's children.
-    public var debugDescriptionDescending: String {
+    var debugDescriptionDescending: String {
         describeDescending(self) { $0.debugDescription }
     }
 
@@ -216,14 +220,14 @@ extension Node {
     /// - Parameter node: the start node.
     /// - Parameter level: current indentation level.
     /// - Parameter closure: a closure to apply for each node.
-    public func describeDescending(_ node: Node<Content>, _ level: Int = 0, using closure: (Node<Content>) -> String) -> String {
+    func describeDescending(_ node: Node<Content>, _ level: Int = 0, using closure: (Node<Content>) -> String) -> String {
         let prefix = String(repeating: "   ", count: level) + "⮑ "
-        return prefix + closure(node) + "\n" + self.children.map { $0.describeDescending($0, level + 1, using: closure) }.joined()
+        return prefix + closure(node) + "\n" + children.map { $0.describeDescending($0, level + 1, using: closure) }.joined()
     }
 }
 
-extension Node where Content == Void {
-    public convenience init() {
+public extension Node where Content == Void {
+    convenience init() {
         self.init(())
     }
 }

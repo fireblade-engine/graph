@@ -5,10 +5,10 @@
 //  Created by Christian Treffs on 22.08.19.
 //
 
-import XCTest
 import FirebladeGraph
 import struct Foundation.UUID
 import SnapshotTesting
+import XCTest
 
 // swiftlint:disable identifier_name
 
@@ -43,13 +43,24 @@ final class TraversalTests: XCTestCase {
             result.append($0.content)
         }
 
-        let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
+        let expected = [a, b, c, d, e, f, g, h, i, j].map(\.content)
         XCTAssertEqual(result, expected)
 
-        let image = try XCTUnwrap(a.renderGraphAsImage())
-
         #if !os(Linux)
-        assertSnapshot(matching: image, as: .image)
+            let exp = expectation(description: "\(#function)")
+            a.renderGraphAsImage { result in
+                switch result {
+                case let .success(image):
+                    DispatchQueue.main.async {
+                        assertSnapshot(matching: image, as: .image)
+                        exp.fulfill()
+                    }
+
+                case let .failure(failure):
+                    XCTFail("\(failure)")
+                }
+            }
+            wait(for: [exp], timeout: 3.0)
         #endif
     }
 
@@ -83,12 +94,24 @@ final class TraversalTests: XCTestCase {
         a.descend {
             result.append($0.content)
         }
-        let expected = [a, b, c, e, f, g, d, h, i, j].map { $0.content }
+        let expected = [a, b, c, e, f, g, d, h, i, j].map(\.content)
         XCTAssertEqual(result, expected)
 
-        let image = try XCTUnwrap(a.renderGraphAsImage())
         #if !os(Linux)
-        assertSnapshot(matching: image, as: .image)
+            let exp = expectation(description: "\(#function)")
+            a.renderGraphAsImage { result in
+                switch result {
+                case let .success(image):
+                    DispatchQueue.main.async {
+                        assertSnapshot(matching: image, as: .image)
+                        exp.fulfill()
+                    }
+
+                case let .failure(failure):
+                    XCTFail("\(failure)")
+                }
+            }
+            wait(for: [exp], timeout: 3.0)
         #endif
     }
 
@@ -116,7 +139,7 @@ final class TraversalTests: XCTestCase {
 
         let result: [UUID] = a.descendReduce([UUID]()) { $0 + [$1.content] }
 
-        let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
+        let expected = [a, b, c, d, e, f, g, h, i, j].map(\.content)
         XCTAssertEqual(result, expected)
     }
 
@@ -148,7 +171,7 @@ final class TraversalTests: XCTestCase {
             result.append($0.content)
         }
 
-        let expected = [a, b, c, d, e, f, g, h, i, j].reversed().map { $0.content }
+        let expected = [a, b, c, d, e, f, g, h, i, j].reversed().map(\.content)
         XCTAssertEqual(result, expected)
     }
 
@@ -176,7 +199,7 @@ final class TraversalTests: XCTestCase {
 
         let result: [UUID] = j.ascendReduce([UUID]()) { $0 + [$1.content] }
 
-        let expected = [a, b, c, d, e, f, g, h, i, j].reversed().map { $0.content }
+        let expected = [a, b, c, d, e, f, g, h, i, j].reversed().map(\.content)
         XCTAssertEqual(result, expected)
     }
 }

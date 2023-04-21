@@ -5,30 +5,29 @@
 //  Created by Christian Treffs on 24.03.20.
 //
 
-import DOT
 import Foundation
 import GraphViz
 @_exported import SwiftGraph
 
 extension UniqueElementsGraph: GraphVizRenderable where V: GraphVizNodeRepresentable {
-    public final func renderGraph(as format: Format) -> Data? {
-        drawGraphUnweigted(self, as: format)
+    public final func renderGraph(as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) {
+        drawGraphUnweigted(self, as: format, completion: completion)
     }
 }
 
 extension UnweightedGraph: GraphVizRenderable where V: GraphVizNodeRepresentable {
-    public final func renderGraph(as format: Format) -> Data? {
-        drawGraphUnweigted(self, as: format)
+    public final func renderGraph(as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) {
+        drawGraphUnweigted(self, as: format, completion: completion)
     }
 }
 
 extension WeightedGraph: GraphVizRenderable where V: GraphVizNodeRepresentable, W: Numeric {
-    public final func renderGraph(as format: Format) -> Data? {
-        drawGraphWeigted(self, as: format)
+    public final func renderGraph(as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) {
+        drawGraphWeigted(self, as: format, completion: completion)
     }
 }
 
-private func drawGraphUnweigted<G>(_ graph: G, as format: Format) -> Data? where G: SwiftGraph.Graph, G.V: GraphVizNodeRepresentable {
+private func drawGraphUnweigted<G>(_ graph: G, as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) where G: SwiftGraph.Graph, G.V: GraphVizNodeRepresentable {
     let directed = graph.isDAG
     var graphvizGraph = Graph(directed: directed, strict: true)
 
@@ -47,14 +46,10 @@ private func drawGraphUnweigted<G>(_ graph: G, as format: Format) -> Data? where
 
     let layout: LayoutAlgorithm = directed ? .dot : .sfdp
 
-    do {
-        return try graphvizGraph.render(using: layout, to: format)
-    } catch {
-        return nil
-    }
+    graphvizGraph.render(using: layout, to: format, completion: completion)
 }
 
-private func drawGraphWeigted<G, W>(_ graph: G, as format: Format) -> Data? where G: SwiftGraph.Graph, G.V: GraphVizNodeRepresentable, G.E == WeightedEdge<W>, W: Numeric {
+private func drawGraphWeigted<G, W>(_ graph: G, as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) where G: SwiftGraph.Graph, G.V: GraphVizNodeRepresentable, G.E == WeightedEdge<W>, W: Numeric {
     let directed = graph.isDAG
     var graphvizGraph = Graph(directed: directed, strict: true)
 
@@ -76,9 +71,5 @@ private func drawGraphWeigted<G, W>(_ graph: G, as format: Format) -> Data? wher
 
     let layout: LayoutAlgorithm = directed ? .dot : .sfdp
 
-    do {
-        return try graphvizGraph.render(using: layout, to: format)
-    } catch {
-        return nil
-    }
+    graphvizGraph.render(using: layout, to: format, completion: completion)
 }
