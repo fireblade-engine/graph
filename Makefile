@@ -4,7 +4,7 @@ lint-fix:
 	mint run swiftlint --fix --quiet
 	mint run swiftformat --quiet --swiftversion ${SWIFT_PACKAGE_VERSION} .
 
-test: genLinuxTests
+test:
 	swift test
 
 clean:
