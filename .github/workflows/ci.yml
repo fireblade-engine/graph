@@ -20,7 +20,7 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
         
       - name: Test
-        run: swift test -v --skip-update --parallel --enable-code-coverage
+        run: swift test --parallel --enable-code-coverage
         env:
           DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
           
