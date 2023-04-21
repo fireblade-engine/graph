@@ -1,6 +1,5 @@
 # Fireblade Graph
 
-[![Build Status](https://travis-ci.com/fireblade-engine/graph.svg?branch=master)](https://travis-ci.com/fireblade-engine/graph)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 This is a **lightweight**, **fast** and **easy to use** [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) implementation in Swift.    
