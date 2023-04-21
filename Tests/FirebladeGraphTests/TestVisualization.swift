@@ -20,6 +20,7 @@ final class TestVisualization: XCTestCase {
             "\(firstName) \(lastName)"
         }
     }
+
     func testCicularUndirectedVisualization() throws {
         let exp = expectation(description: "\(#function)")
         let john = Person(firstName: "John", lastName: "Doe")
@@ -31,22 +32,21 @@ final class TestVisualization: XCTestCase {
         friends.addEdge(from: john, to: max)
         friends.addEdge(from: max, to: jane)
 
-#if !os(Linux)
-        friends.renderGraphAsImage { result in
-            switch result {
-            case .success(let image):
+        #if !os(Linux)
+            friends.renderGraphAsImage { result in
+                switch result {
+                case let .success(image):
+                    DispatchQueue.main.async {
+                        assertSnapshot(matching: image, as: .image)
+                        exp.fulfill()
+                    }
 
-                DispatchQueue.main.async {
-                    assertSnapshot(matching: image, as: .image)
-                    exp.fulfill()
+                case let .failure(failure):
+                    XCTFail("\(failure)")
                 }
-                exp.fulfill()
-            case .failure(let failure):
-                XCTFail("\(failure)")
             }
-        }
-        wait(for: [exp], timeout: 3.0)
-#endif
+            wait(for: [exp], timeout: 3.0)
+        #endif
     }
 
     func testCicularDirectedVisualization() {
@@ -60,27 +60,26 @@ final class TestVisualization: XCTestCase {
         friends.addEdge(from: john, to: max, directed: true)
         friends.addEdge(from: max, to: jane, directed: true)
 
-#if !os(Linux)
-        friends.renderGraphAsImage { result in
-            switch result {
-            case .success(let image):
+        #if !os(Linux)
+            friends.renderGraphAsImage { result in
+                switch result {
+                case let .success(image):
+                    DispatchQueue.main.async {
+                        assertSnapshot(matching: image, as: .image)
+                        exp.fulfill()
+                    }
 
-                DispatchQueue.main.async {
-                    assertSnapshot(matching: image, as: .image)
-                    exp.fulfill()
+                case let .failure(failure):
+                    XCTFail("\(failure)")
                 }
-                exp.fulfill()
-            case .failure(let failure):
-                XCTFail("\(failure)")
             }
-        }
-        wait(for: [exp], timeout: 3.0)
-#endif
+            wait(for: [exp], timeout: 3.0)
+        #endif
     }
 
     func testCityGraphVisualization() {
         let exp = expectation(description: "\(#function)")
-        let cityGraph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
+        let cityGraph = WeightedGraph<String, Int>(vertices: ["Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas City", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"])
 
         cityGraph.addEdge(from: "Seattle", to: "Chicago", weight: 2097)
         cityGraph.addEdge(from: "Seattle", to: "Chicago", weight: 2097)
@@ -107,20 +106,20 @@ final class TestVisualization: XCTestCase {
         cityGraph.addEdge(from: "Houston", to: "Miami", weight: 1187)
         cityGraph.addEdge(from: "Houston", to: "Dallas", weight: 239)
 
-#if !os(Linux)
-        cityGraph.renderGraphAsImage { result in
-            switch result {
-            case .success(let image):
-                DispatchQueue.main.async {
-                    assertSnapshot(matching: image, as: .image)
-                    exp.fulfill()
+        #if !os(Linux)
+            cityGraph.renderGraphAsImage { result in
+                switch result {
+                case let .success(image):
+                    DispatchQueue.main.async {
+                        assertSnapshot(matching: image, as: .image)
+                        exp.fulfill()
+                    }
+
+                case let .failure(failure):
+                    XCTFail("\(failure)")
                 }
-                exp.fulfill()
-            case .failure(let failure):
-                XCTFail("\(failure)")
             }
-        }
-        wait(for: [exp], timeout: 3.0)
-#endif
+            wait(for: [exp], timeout: 3.0)
+        #endif
     }
 }

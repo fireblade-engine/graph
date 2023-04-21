@@ -5,8 +5,8 @@
 //  Created by Christian Treffs on 24.03.20.
 //
 
-import GraphViz
 import struct Foundation.Data
+import GraphViz
 
 extension Node: GraphVizRenderable where Content: GraphVizNodeRepresentable {
     public final func renderGraph(as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void) {

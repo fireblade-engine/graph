@@ -14,7 +14,7 @@ public protocol GraphVizNodeRepresentable {
 }
 
 extension GraphVizNodeRepresentable {
-    internal func graphVizNode() -> GraphViz.Node {
+    func graphVizNode() -> GraphViz.Node {
         .init(graphVizNodeDescription())
     }
 }
@@ -22,12 +22,15 @@ extension GraphVizNodeRepresentable {
 extension String: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { self }
 }
+
 extension Int: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { "\(self)" }
 }
+
 extension UInt: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { "\(self)" }
 }
+
 extension UInt8: GraphVizNodeRepresentable {
     public func graphVizNodeDescription() -> String { "\(self)" }
 }
@@ -37,7 +40,7 @@ extension UUID: GraphVizNodeRepresentable {
 }
 
 public protocol GraphVizRenderable {
-    func renderGraph(as format: Format, completion: (@escaping (Result<Data, Swift.Error>) -> Void))
+    func renderGraph(as format: Format, completion: @escaping (Result<Data, Swift.Error>) -> Void)
 }
 
 public enum ImageError: Swift.Error {
@@ -45,42 +48,44 @@ public enum ImageError: Swift.Error {
 }
 
 #if canImport(AppKit)
-import class AppKit.NSImage
-public typealias Image = NSImage
-extension GraphVizRenderable {
-    public func renderGraphAsImage(completion: @escaping (Result<Image, Swift.Error>) -> Void) {
-        renderGraph(as: .png) { result in
-            switch result {
-            case .success(let data):
-                if let image = Image(data: data) {
-                    completion(.success(image))
-                } else {
-                    completion(.failure(ImageError.failedToCreateImage(data)))
+    import class AppKit.NSImage
+    public typealias Image = NSImage
+    public extension GraphVizRenderable {
+        func renderGraphAsImage(completion: @escaping (Result<Image, Swift.Error>) -> Void) {
+            renderGraph(as: .png) { result in
+                switch result {
+                case let .success(data):
+                    if let image = Image(data: data) {
+                        completion(.success(image))
+                    } else {
+                        completion(.failure(ImageError.failedToCreateImage(data)))
+                    }
+
+                case let .failure(failure):
+                    completion(.failure(failure))
                 }
-            case .failure(let failure):
-                completion(.failure(failure))
             }
         }
     }
-}
 
 #elseif canImport(UIKit)
-import class UIKit.UIImage
-public typealias Image = UIImage
-extension GraphVizRenderable {
-    public func renderGraphAsImage(completion: @escaping (Result<Image, Swift.Error>) -> Void) {
-        renderGraph(as: .png) { result in
-            switch result {
-            case .success(let data):
-                if let image = Image(data: data) {
-                    completion(.success(image))
-                } else {
-                    completion(.failure(ImageError.failedToCreateImage(data)))
+    import class UIKit.UIImage
+    public typealias Image = UIImage
+    public extension GraphVizRenderable {
+        func renderGraphAsImage(completion: @escaping (Result<Image, Swift.Error>) -> Void) {
+            renderGraph(as: .png) { result in
+                switch result {
+                case let .success(data):
+                    if let image = Image(data: data) {
+                        completion(.success(image))
+                    } else {
+                        completion(.failure(ImageError.failedToCreateImage(data)))
+                    }
+
+                case let .failure(failure):
+                    completion(.failure(failure))
                 }
-            case .failure(let failure):
-                completion(.failure(failure))
             }
         }
     }
-}
 #endif
