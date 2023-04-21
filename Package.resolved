@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "SnapshotTesting",
+        "package": "swift-snapshot-testing",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
-          "revision": "114882386a815f4a2e6d8f2f7ee4857acd372438",
-          "version": "1.7.2"
+          "revision": "cef5b3f6f11781dd4591bdd1dd0a3d22bd609334",
+          "version": "1.11.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/davecom/SwiftGraph.git",
         "state": {
           "branch": null,
-          "revision": "3e9ed26e380b40fcadf80ef5d588829ced251673",
-          "version": "3.0.0"
+          "revision": "76b5180a5cc32eda7f5236a756f4c1e0936311c6",
+          "version": "3.1.0"
         }
       }
     ]

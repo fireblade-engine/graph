@@ -5,8 +5,7 @@
 //  Created by Christian Treffs on 22.08.19.
 //
 
-import class XCTest.XCTestCase
-import func XCTest.XCTAssertEqual
+import XCTest
 import FirebladeGraph
 import struct Foundation.UUID
 import SnapshotTesting
@@ -16,7 +15,7 @@ import SnapshotTesting
 final class TraversalTests: XCTestCase {
     typealias StringNode = Node<String>
 
-    func testDescendLinearGraph() {
+    func testDescendLinearGraph() throws {
         let a = StringNode("a")
         let b = StringNode("b")
         let c = StringNode("c")
@@ -47,12 +46,14 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, d, e, f, g, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
+        let image = try XCTUnwrap(a.renderGraphAsImage())
+
         #if !os(Linux)
-        assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
+        assertSnapshot(matching: image, as: .image)
         #endif
     }
 
-    func testDescendSpreadingGraph() {
+    func testDescendSpreadingGraph() throws {
         let a = Node<Int>(0)
         let b = Node<Int>(1)
         let c = Node<Int>(2)
@@ -85,8 +86,9 @@ final class TraversalTests: XCTestCase {
         let expected = [a, b, c, e, f, g, d, h, i, j].map { $0.content }
         XCTAssertEqual(result, expected)
 
+        let image = try XCTUnwrap(a.renderGraphAsImage())
         #if !os(Linux)
-        assertSnapshot(matching: a.renderGraphAsImage()!, as: .image)
+        assertSnapshot(matching: image, as: .image)
         #endif
     }
 
