@@ -50,14 +50,10 @@ final class TraversalTests: XCTestCase {
         a.renderGraphAsImage { result in
             switch result {
             case .success(let image):
-#if !os(Linux)
                 DispatchQueue.main.async {
                     assertSnapshot(matching: image, as: .image)
                     exp.fulfill()
                 }
-#else
-                exp.fulfill()
-#endif
             case .failure(let failure):
                 XCTFail("\(failure)")
             }
@@ -102,14 +98,10 @@ final class TraversalTests: XCTestCase {
         a.renderGraphAsImage { result in
             switch result {
             case .success(let image):
-#if !os(Linux)
                 DispatchQueue.main.async {
                     assertSnapshot(matching: image, as: .image)
                     exp.fulfill()
                 }
-#else
-                exp.fulfill()
-#endif
             case .failure(let failure):
                 XCTFail("\(failure)")
             }
