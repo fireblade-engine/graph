@@ -40,10 +40,8 @@ public protocol GraphVizRenderable {
     func renderGraph(as format: Format, completion: (@escaping (Result<Data, Swift.Error>) -> Void))
 }
 
-extension Image {
-    public enum Error: Swift.Error {
-        case failedToCreateImage(_ from: Data)
-    }
+public enum ImageError: Swift.Error {
+    case failedToCreateImage(_ from: Data)
 }
 
 #if canImport(AppKit)
@@ -57,7 +55,7 @@ extension GraphVizRenderable {
                 if let image = Image(data: data) {
                     completion(.success(image))
                 } else {
-                    completion(.failure(Image.Error.failedToCreateImage(data)))
+                    completion(.failure(ImageError.failedToCreateImage(data)))
                 }
             case .failure(let failure):
                 completion(.failure(failure))
@@ -77,7 +75,7 @@ extension GraphVizRenderable {
                 if let image = Image(data: data) {
                     completion(.success(image))
                 } else {
-                    completion(.failure(Image.Error.failedToCreateImage(data)))
+                    completion(.failure(ImageError.failedToCreateImage(data)))
                 }
             case .failure(let failure):
                 completion(.failure(failure))
