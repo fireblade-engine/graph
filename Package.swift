@@ -1,9 +1,13 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 import PackageDescription
 
 let package = Package(
     name: "FirebladeGraph",
+    platforms: [
+        .macOS(.v11),
+        .iOS(.v13)
+    ],
     products: [
         .library(
             name: "FirebladeGraph",
